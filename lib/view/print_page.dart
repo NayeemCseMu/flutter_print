@@ -33,11 +33,12 @@ class PrintDoc extends StatelessWidget {
 
   Future<Uint8List> _generatePdf(PdfPageFormat format, String title) async {
     final pdf = pw.Document(version: PdfVersion.pdf_1_4, compress: true);
-    final font = await PdfGoogleFonts.aBeeZeeItalic();
+    final font = await PdfGoogleFonts.archivoMedium();
 
     pdf.addPage(
       pw.Page(
         pageFormat: format,
+        clip: false,
         build: (context) {
           return pw.Column(
             children: [
@@ -45,7 +46,12 @@ class PrintDoc extends StatelessWidget {
                 width: double.infinity,
                 child: pw.Container(
                   child: pw.Text(title,
-                      style: pw.TextStyle(font: font, fontSize: 18)),
+                      style: pw.TextStyle(
+                        font: font,
+                        fontSize: 24,
+                        height: 1.5,
+                        letterSpacing: 0.3,
+                      )),
                 ),
               ),
               // pw.SizedBox(height: 20),

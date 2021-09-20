@@ -17,20 +17,44 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("Print"),
       ),
-      body: Column(
-        children: [
-          SizedBox(height: 30),
-          TextField(
-            controller: _controller,
-          ),
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              Get.to(() => PrintDoc(_controller.text));
-            },
-            child: Text("Print"),
-          )
-        ],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+        child: Column(
+          children: [
+            // SizedBox(height: 30),
+            Expanded(
+              child: TextField(
+                controller: _controller,
+                maxLines: 100,
+                decoration: InputDecoration(
+                    hintText: "Write Something...",
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 10,
+                    ),
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black, width: 1.0),
+                    )),
+              ),
+            ),
+            SizedBox(height: 20),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  Get.to(() => PrintDoc(_controller.text));
+                },
+                child: Text(
+                  "Preview",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
